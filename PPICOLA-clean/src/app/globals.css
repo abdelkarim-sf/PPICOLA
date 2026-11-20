@@ -1,0 +1,81 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #faf8f4;
+  --bg-soft: #f3f0ea;
+  --surface: #ffffff;
+  --text: #1e1b4b;
+  --text-soft: #4b5563;
+}
+
+.dark {
+  --bg: #0f0d1a;
+  --bg-soft: #171427;
+  --surface: #1d1a30;
+  --text: #e8e6f7;
+  --text-soft: #a5a3c0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+@layer components {
+  .glass {
+    @apply bg-white/70 dark:bg-white/[0.06] backdrop-blur-xl border border-white/60 dark:border-white/10;
+  }
+  .card-soft {
+    @apply rounded-3xl shadow-soft border border-black/[0.04] dark:border-white/10 bg-white dark:bg-white/[0.04];
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-br from-brand-500 to-brand-600 px-6 py-3.5 font-semibold text-white shadow-lift transition-all duration-200 hover:-translate-y-0.5 hover:brightness-110 active:translate-y-0 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brand-400/40 disabled:opacity-50 disabled:pointer-events-none;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-2xl border border-brand-200 dark:border-white/10 bg-white/60 dark:bg-white/5 px-5 py-3 font-medium text-brand-700 dark:text-brand-200 transition-all duration-200 hover:-translate-y-0.5 hover:bg-white dark:hover:bg-white/10 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brand-400/30;
+  }
+  .text-gradient {
+    @apply bg-gradient-to-r from-brand-500 via-brand-400 to-mint-400 bg-clip-text text-transparent;
+  }
+}
+
+/* skeleton loader */
+.skeleton {
+  position: relative;
+  overflow: hidden;
+  background: rgba(120, 120, 180, 0.12);
+}
+.skeleton::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+  animation: shimmer 1.6s infinite;
+}
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(99, 102, 241, 0.3);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
